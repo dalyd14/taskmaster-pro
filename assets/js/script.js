@@ -33,7 +33,6 @@ var loadTasks = function() {
 
   // loop over object properties
   $.each(tasks, function(list, arr) {
-    console.log(list, arr);
     // then loop over sub-array
     arr.forEach(function(task) {
       createTask(task.text, task.date, list);
@@ -66,7 +65,6 @@ $(".list-group").on("click", "p", function() {
   var text = $(this)
     .text()
     .trim()
-  console.log(text)
   var textInput = $("<textarea>")
     .addClass("form-control")
     .val(text);
@@ -123,8 +121,47 @@ $(".list-group").on("blur", "textarea", function() {
   $(this).replaceWith(taskP)
 })
 
+$(".card .list-group").sortable({
+  connectWith: $(".card .list-group"),
+  scroll: false,
+  tolerance: "pointer",
+  helper: "clone",
+  activate: function(event) {
+    //console.log("activate", this)
+  },
+  deactivate: function(event) {
+    //console.log("deactivate", this)
+  },
+  over: function(event) {
+    //console.log("over", event.target)
+  },
+  out: function(event) {
+    //console.log("out", event.target)
+  },
+  update: function(event) {
+    var listName = $(this).attr("id").replace("list-","")
+    var tempArr = []
+    $(this).children().each(function() {
+      var text = $(this)
+        .find("p")
+        .text()
+        .trim();
 
+      var date = $(this)
+        .find("span")
+        .text()
+        .trim();
 
+      // console.log(text, date);
+      tempArr.push({
+        text: text,
+        date: date
+      })
+    })
+    tasks[listName] = tempArr
+    saveTasks()
+  }
+})
 
 // modal was triggered
 $("#task-form-modal").on("show.bs.modal", function() {
