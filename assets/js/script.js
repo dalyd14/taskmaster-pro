@@ -139,6 +139,7 @@ $(".card .list-group").sortable({
     //console.log("out", event.target)
   },
   update: function(event) {
+    console.log(event)
     var listName = $(this).attr("id").replace("list-","")
     var tempArr = []
     $(this).children().each(function() {
@@ -160,6 +161,20 @@ $(".card .list-group").sortable({
     })
     tasks[listName] = tempArr
     saveTasks()
+  }
+})
+
+$("#trash").droppable({
+  accept: ".card .list-group-item",
+  tolerance: "touch",
+  drop: function(event, ui) {
+    ui.draggable.remove()
+  },
+  over: function(event, ui) {
+    console.log("over")
+  },
+  out: function(event, ui) {
+    console.log("out")
   }
 })
 
