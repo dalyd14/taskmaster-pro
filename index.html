@@ -24,13 +24,66 @@
       </p>
     </header>
     <main class="col-12 col-lg-9">
-      <div class="m-5">
-        <h2>To Do</h2>
-        <ul id="list-toDo" class="list-group"> </ul>
+      <div class="m-5 row justify-content-around">
+        <!-- todo list -->
+        <div class="col-12 col-md-6 col-xl-3 mb-3">
+          <div class="card">
+            <h2 class="card-header">
+              To Do
+            </h2>
+            <ul id="list-toDo" class="list-group list-group-flush">
+              <li class="list-group-item">
+                <span class="badge badge-primary badge-pill">05/28/2020</span>
+                <p class="m-1">Sample to do task</p>
+              </li>      
+            </ul>  
+          </div>                
+        </div>
+        <!-- in progress list -->
+        <div class="col-12 col-md-6 col-xl-3 mb-3">
+          <div class="card">
+            <h2 class="card-header">
+              In Progress
+            </h2>
+            <ul id="list-inProgress" class="list-group list-group-flush">
+              <li class="list-group-item">
+                <span class="badge badge-primary badge-pill">05/28/2020</span>
+                <p class="m-1">Sample in progress task</p>
+              </li>                
+            </ul>  
+          </div>    
+        </div>
+        <!-- in review list -->
+        <div class="col-12 col-md-6 col-xl-3 mb-3">
+          <div class="card">
+            <h2 class="card-header">
+              In Review
+            </h2>
+            <ul id="list-inReview" class="list-group list-group-flush">
+              <li class="list-group-item">
+                <span class="badge badge-primary badge-pill">05/28/2020</span>
+                <p class="m-1">Sample in review task</p>
+              </li>                
+            </ul>  
+          </div>         
+        </div>
+        <!-- done list -->
+        <div class="col-12 col-md-6 col-xl-3 mb-3">
+          <div class="card">
+            <h2 class="card-header">
+              Done
+            </h2>
+            <ul id="list-done" class="list-group list-group-flush">
+              <li class="list-group-item">
+                <span class="badge badge-primary badge-pill">05/28/2020</span>
+                <p class="m-1">Sample done task</p>
+              </li>
+            </ul>
+          </div>   
+        </div>
       </div>
     </main>
   </div>
-
   <!-- Modal -->
   <div class="modal fade" id="task-form-modal" tabindex="-1" role="dialog" aria-labelledby="task-form-modal"
     aria-hidden="true">
@@ -46,11 +99,11 @@
           <form>
             <div class="form-group">
               <label for="modalTaskDescription">Task description</label>
-              <textarea id="modalTaskDescription" rows="3"></textarea>
+              <textarea class="form-control" id="modalTaskDescription" rows="3"></textarea>
             </div>
             <div class="form-group">
               <label for="modalDueDate">Due date</label>
-              <input type="text" id="modalDueDate" placeholder="mm/dd/yyyy" autocomplete="off" />
+              <input class="form-control" type="text" id="modalDueDate" placeholder="mm/dd/yyyy" autocomplete="off" />
             </div>
           </form>
         </div>
