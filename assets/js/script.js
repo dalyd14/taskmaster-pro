@@ -1,4 +1,9 @@
 var tasks = {};
+var currentY = null;
+var pageY = null;
+var displayHeight = null;
+var documentHeight = null;
+
 
 var createTask = function(taskText, taskDate, taskList) {
   // create elements that make up a task item
@@ -173,6 +178,29 @@ $(".card .list-group").sortable({
     })
     tasks[listName] = tempArr
     saveTasks()
+  },
+  start: function(event, ui) {
+    displayHeight = $(window).height();
+    documentHeight = $(document).height();
+  },
+  sort: function(event, ui) {
+    currentY = event.clientY
+    pageY = event.pageY
+    if((documentHeight*.9) < pageY) {
+      return;
+    } else if((displayHeight*.1) > currentY) {
+      scrollTo({
+        left: 0,
+        top: 0,
+        behavior: "smooth"
+      })
+    } else if ((displayHeight*.9) < currentY) {
+      scrollTo({
+        left: 0,
+        top: documentHeight,
+        behavior: "smooth"
+      })
+    }
   }
 })
 
