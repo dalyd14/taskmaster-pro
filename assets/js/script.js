@@ -6,6 +6,7 @@ var createTask = function(taskText, taskDate, taskList) {
   var taskSpan = $("<span>")
     .addClass("badge badge-primary badge-pill")
     .text(taskDate);
+    // .attr("id", "modalDueDate");
   var taskP = $("<p>")
     .addClass("m-1")
     .text(taskText);
@@ -13,6 +14,7 @@ var createTask = function(taskText, taskDate, taskList) {
   // append span and p element to parent li
   taskLi.append(taskSpan, taskP);
 
+  auditTask(taskLi)
 
   // append to ul list on the page
   $("#list-" + taskList).append(taskLi);
@@ -57,6 +59,13 @@ $(".list-group").on("click", "span", function() {
   //swap out elements
   $(this).replaceWith(dateInput);
 
+  dateInput.datepicker({
+    minDate: 1,
+    onClose: function() {
+      $(this).trigger("change")
+    }
+  })
+
   //auto focus on new element
   dateInput.trigger("focus")
 })
@@ -72,7 +81,7 @@ $(".list-group").on("click", "p", function() {
   textInput.trigger("focus")
 })
 
-$(".list-group").on("blur", "input", function() {
+$(".list-group").on("change", "input[type='text']", function() {
   var date = $(this)
     .val()
     .trim();
@@ -95,6 +104,8 @@ $(".list-group").on("blur", "input", function() {
     .text(date);
   
   $(this).replaceWith(taskSpan)
+
+  auditTask($(taskSpan).closest(".list-group-item"))
 })
 
 $(".list-group").on("blur", "textarea", function() {
@@ -139,7 +150,6 @@ $(".card .list-group").sortable({
     //console.log("out", event.target)
   },
   update: function(event) {
-    console.log(event)
     var listName = $(this).attr("id").replace("list-","")
     var tempArr = []
     $(this).children().each(function() {
@@ -178,6 +188,21 @@ $("#trash").droppable({
   }
 })
 
+var auditTask = function(taskEl) {
+
+  var date = $(taskEl).find("span").text().trim();
+
+  var time = moment(date, "L").set("hour", 17);
+
+  $(taskEl).removeClass("list-group-item-warning list-group-item-danger")
+
+  if (moment().isAfter(time)) {
+    $(taskEl).addClass("list-group-item-danger")
+  } else if(Math.abs(moment().diff(time, "days")) <= 2) {
+    $(taskEl).addClass("list-group-item-warning")
+  }
+}
+
 // modal was triggered
 $("#task-form-modal").on("show.bs.modal", function() {
   // clear values
@@ -190,12 +215,16 @@ $("#task-form-modal").on("shown.bs.modal", function() {
   $("#modalTaskDescription").trigger("focus");
 });
 
+$("#modalDueDate").datepicker({
+  minDate: 1
+})
+
 // save button in modal was clicked
 $("#task-form-modal .btn-primary").click(function() {
   // get form values
   var taskText = $("#modalTaskDescription").val();
   var taskDate = $("#modalDueDate").val();
-
+  
   if (taskText && taskDate) {
     createTask(taskText, taskDate, "toDo");
 
