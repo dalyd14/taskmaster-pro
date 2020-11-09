@@ -7,6 +7,8 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/themes/base/jquery-ui.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&family=Staatliches&display=swap">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/open-iconic/1.1.1/font/css/open-iconic-bootstrap.min.css"/>
   <link rel="stylesheet" href="./assets/css/style.css" />
   <title>Taskmaster Pro</title>
 </head>
@@ -16,17 +18,23 @@
   <div class="row min-vh-100 no-gutters">
     <header class="col-12 col-lg-3 bg-dark text-light sticky-top d-flex flex-column p-4 p-lg-3">
       <h1 class="text-center">Taskmaster Pro Edition</h1>
-      <button id="create-task" class="btn btn-block btn-success" data-toggle="modal" data-target="#task-form-modal">Add
-        Task</button>
-      <button id="remove-tasks" class="btn btn-block btn-danger">Delete All Tasks</button>
-      <p class="mt-auto d-none d-lg-block">
+      <button id="create-task" class="btn btn-block btn-success" data-toggle="modal" data-target="#task-form-modal">
+        <span class="oi oi-plus mr-2"></span>
+        Add Task
+      </button>
+      <button id="remove-tasks" class="btn btn-block btn-danger">
+        <span class="oi oi-trash mr-2"></span>
+        Delete All Tasks
+      </button>
+      <span class="oi oi-task mt-auto mb-3 d-none d-lg-block display-1 text-center"></span>
+      <p class="d-none d-lg-block">
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi voluptas architecto ipsa
         excepturi aut non laudantium sequi fugit officiis optio deleniti asperiores rem eius 
         laborum maxime blanditiis culpa, quis iste?
       </p>
     </header>
     <main class="col-12 col-lg-9 d-flex flex-column">
-      <div class="m-5 row justify-content-around">
+      <div class="m-2 m-lg-5 row justify-content-around">
         <!-- todo list -->
         <div class="col-12 col-md-6 col-xl-3 mb-3">
           <div class="card">
@@ -70,6 +78,7 @@
       </div>
       <div id="trash" class="mt-auto">
         <div class="w-100 bg-danger text-light text-center p-3 display-4">
+          <span class="oi oi-trash mr-2"></span>
           Drop Here to Remove.
         </div>
       </div>
@@ -108,10 +117,10 @@
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.15.0/umd/popper.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js" integrity="sha512-0bEtK0USNd96MnO4XhH8jhv3nyRF0eK87pJke6pkYf3cM0uDIhNJy9ltuzqgypoIFXw3JSuiy04tVk4AjpZdZw==" crossorigin="anonymous"></script>
   <script src="./assets/js/script.js"></script>
 </body>
 

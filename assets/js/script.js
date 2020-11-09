@@ -60,7 +60,7 @@ $(".list-group").on("click", "span", function() {
   $(this).replaceWith(dateInput);
 
   dateInput.datepicker({
-    minDate: 1,
+    minDate: 0,
     onClose: function() {
       $(this).trigger("change")
     }
@@ -181,10 +181,10 @@ $("#trash").droppable({
     ui.draggable.remove()
   },
   over: function(event, ui) {
-    console.log("over")
+    //console.log("over")
   },
   out: function(event, ui) {
-    console.log("out")
+    //console.log("out")
   }
 })
 
@@ -216,7 +216,7 @@ $("#task-form-modal").on("shown.bs.modal", function() {
 });
 
 $("#modalDueDate").datepicker({
-  minDate: 1
+  minDate: 0
 })
 
 // save button in modal was clicked
@@ -252,5 +252,12 @@ $("#remove-tasks").on("click", function() {
 
 // load tasks for the first time
 loadTasks();
+
+setInterval(function() {
+  $(".card .list-group-item").each(function(index, el) {
+    console.log(el)
+    auditTask(el)
+  })
+}, (1000 * 60) * 30)
 
 
